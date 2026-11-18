@@ -112,12 +112,17 @@ saved or exported (Markdown, PDF, …).
 
 ## Update
 
-CRUX checks once a day and tells you when a new version is out, with the command to run.
+CRUX checks once a day and tells you when a new version is out.
 
-- Claude Code: `claude plugin update crux@fontai`, then a new session. You can also turn
-  on auto-update for the `fontai` marketplace in `/plugin`.
-- Claude app: open Crux in **Settings → Customize → Plugins** and click **Update**
-  (or, if you installed the zip, upload the new `crux.zip`).
+- **Claude app, installed as a plugin:** **Settings → Customize → Plugins → Yours → Crux →
+  Update**, then start a new chat.
+- **Claude app, installed from crux.zip:** download the new
+  [crux.zip](https://github.com/fontai/crux/releases/latest/download/crux.zip), remove the old
+  CRUX in **Settings → Customize → Skills → Yours**, and upload the new zip
+  (**+ Add → Upload skill**).
+- **Claude Code:** `claude plugin marketplace update fontai && claude plugin update crux@fontai`,
+  then start a new session. You can also turn on auto-update for the `fontai` marketplace
+  in `/plugin`.
 
 ## Feedback
 
