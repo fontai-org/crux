@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.3 — 2026-11-18
+
+- No longer pre-approves running its scripts, so the Claude app no longer flags the plugin
+  as able to run code without asking. Claude Code asks once before converting a DOCX/PDF.
+- Plugin icon and author (Fontai) in the plugin and marketplace manifests.
+- Install in the Claude app via Customize → Plugins → Add marketplace (`fontai/crux`), with
+  updates from the plugin page.
+
 ## 0.1.2 — 2026-11-18
 
 - Language: when the prompt gives no clue (just `crux file.pdf`), CRUX follows the earlier

@@ -1,11 +1,22 @@
 {
   "name": "fontai",
-  "owner": { "name": "Fontai" },
+  "description": "Fontai plugins for Claude. CRUX gets to the crux of long documents.",
+  "owner": {
+    "name": "Fontai",
+    "url": "https://fontai.com"
+  },
   "plugins": [
     {
       "name": "crux",
       "source": "./",
-      "description": "Get to the crux of long documents: one-screen summary with a verdict, evidence-based quality scoring, reconstructed brief."
+      "description": "Get to the crux of long documents: one-screen summary with a verdict, evidence-based quality scoring, reconstructed brief.",
+      "author": {
+        "name": "Fontai",
+        "url": "https://fontai.com"
+      },
+      "version": "0.1.3",
+      "category": "productivity",
+      "homepage": "https://crux.fontai.org"
     }
   ]
 }

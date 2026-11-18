@@ -2,7 +2,7 @@
 name: crux
 description: Get to the crux of a long document (often an AI-generated analysis) so the user can decide without reading it all — one-screen summary with a verdict, strict evidence-based quality scoring with fact and source checking, reconstructed brief of the author. Use when the user says "crux", or asks to analyse, summarise/TLDR, review, score or fact-check a document (md, docx, pdf, pasted text) — e.g. "analyzuj dokument", "shrň mi to", "zhodnoť tuhle analýzu", "je to dobrá analýza?". If the user did not name crux, offer it first instead of starting.
 license: MIT
-allowed-tools: Read Grep Glob WebSearch WebFetch Bash(python3 ${CLAUDE_SKILL_DIR}/scripts/extract.py *) Bash(bash ${CLAUDE_SKILL_DIR}/scripts/check_update.sh)
+allowed-tools: Read Grep Glob WebSearch WebFetch
 ---
 
 # crux

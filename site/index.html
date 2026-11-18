@@ -168,6 +168,8 @@
   .steps .code { margin-top: 10px; font-size: 14px; white-space: pre-wrap; overflow-wrap: anywhere; padding-right: 84px; }
   .steps .btn { margin-bottom: 6px; }
   .note { color: var(--muted); font-size: 15px; margin-top: 28px; }
+  .steps-intro { color: var(--white); font-size: 16px; margin-top: 18px; }
+  .steps-intro strong { font-weight: 500; }
 
   /* example output */
   .term { background: #0d0d0d; border: 1px solid var(--rule); margin-top: 36px; font: 400 15px/1.65 var(--mono); padding: 26px 28px; overflow-x: auto; white-space: pre-wrap; color: #d9d9d9; }
@@ -256,8 +258,9 @@
           One click instead: <a href="claude://code/new?q=Read%20https%3A%2F%2Fgithub.com%2Ffontai%2Fcrux%2Fblob%2Fmain%2FREADME.md%20and%20install%20the%20crux%20skill.">Claude Desktop</a> · <a href="vscode://anthropic.claude-code/install-plugin?plugin=crux&amp;marketplace=fontai/crux">VS Code</a> · or <a href="#" class="copy-prompt" data-text="Read https://github.com/fontai/crux/blob/main/README.md and install the crux skill.">copy a prompt</a> that tells Claude to install it.<br><a href="#install-steps">Step-by-step instructions and help ↓</a></p>
         </div>
         <div class="panel" id="p-app" role="tabpanel" aria-labelledby="t-app" hidden>
-          <a class="btn primary" href="https://github.com/fontai/crux/releases/latest/download/crux.zip">Download crux.zip</a>
-          <p class="alts">Then in Claude: <strong>Settings → Customize → Skills</strong> → <strong>+ Add</strong> → <strong>Upload skill</strong> → choose <code>crux.zip</code>.<br><a href="#install-steps">Step-by-step instructions and help ↓</a></p>
+          <div class="code big"><span>fontai/crux</span><button class="copy" type="button">Copy</button></div>
+          <p class="alts">In Claude: <strong>Settings → Customize → Plugins → + Add → Add marketplace → Add from a repository</strong>, paste <code>fontai/crux</code>, click <strong>Sync</strong>, then <strong>Add</strong> next to Crux.<br>
+          Or <a href="https://github.com/fontai/crux/releases/latest/download/crux.zip">download crux.zip</a> and upload it as a skill.<br><a href="#install-steps">Step-by-step instructions and help ↓</a></p>
         </div>
       </div>
       </div>
@@ -286,15 +289,22 @@ claude plugin install crux@fontai</span><button class="copy" type="button">Copy<
           </ol>
         </div>
         <div>
-          <h3>Claude app <span class="sub">web · desktop</span></h3>
+          <h3>Claude app <span class="sub">desktop · web</span></h3>
+          <p class="steps-intro"><strong>A. As a plugin</strong> (recommended, easy updates)</p>
           <ol class="steps">
-            <li><a class="btn primary" href="https://github.com/fontai/crux/releases/latest/download/crux.zip">Download crux.zip</a><br>Don't unzip it.</li>
-            <li>In Claude, open <strong>Settings → Customize</strong> and switch to the <strong>Skills</strong> tab.</li>
-            <li>Click <strong>+ Add</strong> → <strong>Upload skill</strong> and choose <code>crux.zip</code>. Make sure CRUX is switched on under <strong>Yours</strong>.</li>
-            <li>Check <strong>Settings → Capabilities → Create and edit files</strong> is on (“Skills need this on”). It needs <strong>Artifacts</strong> on too.</li>
-            <li>Open a new chat, attach a document and write <code>crux</code>.</li>
-            <li>For fact-checking, CRUX needs web search in that chat. If it isn't available, CRUX tells you and offers the Quick depth.</li>
+            <li>In Claude, open <strong>Settings → Customize</strong> and switch to the <strong>Plugins</strong> tab.</li>
+            <li>Click <strong>+ Add → Add marketplace → Add from a repository</strong>.</li>
+            <li>Paste <code>fontai/crux</code> and click <strong>Sync</strong>. If a notice offers <strong>Grant access</strong>, you can close it. It only turns on automatic updates.</li>
+            <li>Find <strong>Crux</strong> in the list, click <strong>Add</strong>, then <strong>Continue</strong>.</li>
+            <li>Click <strong>Try in chat</strong>, or open a new chat, attach a document and write <code>/crux</code>.</li>
+            <li>To update later: open Crux in <strong>Plugins</strong> and click <strong>Update</strong>.</li>
           </ol>
+          <p class="steps-intro"><strong>B. As a skill</strong> (if you don't see Plugins)</p>
+          <ol class="steps">
+            <li><a href="https://github.com/fontai/crux/releases/latest/download/crux.zip">Download crux.zip</a>. Don't unzip it.</li>
+            <li><strong>Settings → Customize → Skills → + Add → Upload skill</strong> and choose <code>crux.zip</code>.</li>
+          </ol>
+          <p class="note">Both: <strong>Settings → Capabilities → Create and edit files</strong> must be on (“Skills need this on”), and it needs <strong>Artifacts</strong> on too. For fact-checking, the chat needs web search; without it CRUX offers the Quick depth.</p>
           <p class="note">Claude Team or Enterprise? Code execution is turned on by an owner in <strong>Organization settings → Plugins &amp; skills</strong>. An owner can also upload CRUX once and share it with the whole organization.<br>Names in Claude changed? <a href="https://support.claude.com/en/articles/12512180-using-skills-in-claude">Anthropic's guide to skills</a> always has the current steps.</p>
         </div>
       </div>

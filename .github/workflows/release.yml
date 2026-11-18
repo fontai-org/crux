@@ -17,8 +17,9 @@ jobs:
           tag="${GITHUB_REF_NAME#v}"
           skill="$(tr -d '[:space:]' < skills/crux/VERSION)"
           plugin="$(jq -r .version .claude-plugin/plugin.json)"
-          echo "tag=$tag skill=$skill plugin=$plugin"
-          [ "$tag" = "$skill" ] && [ "$tag" = "$plugin" ]
+          market="$(jq -r '.plugins[] | select(.name=="crux") | .version' .claude-plugin/marketplace.json)"
+          echo "tag=$tag skill=$skill plugin=$plugin marketplace=$market"
+          [ "$tag" = "$skill" ] && [ "$tag" = "$plugin" ] && [ "$tag" = "$market" ]
       - name: Build crux.zip
         run: cd skills && zip -r ../crux.zip crux -x '*/__pycache__/*' '*.DS_Store'
       - name: Publish release

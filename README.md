@@ -39,17 +39,27 @@ Start a new Claude Code session afterwards.
 In **VS Code** you can open
 `vscode://anthropic.claude-code/install-plugin?plugin=crux&marketplace=fontai/crux`.
 
-### Claude app (web, desktop)
+### Claude app (desktop, web)
+
+**A. As a plugin** (recommended, easy updates)
+
+1. In Claude, open **Settings → Customize** and switch to the **Plugins** tab.
+2. Click **+ Add → Add marketplace → Add from a repository**.
+3. Paste `fontai/crux` and click **Sync**. A notice offering **Grant access** can be closed;
+   it only turns on automatic updates.
+4. Find **Crux**, click **Add**, then **Continue**.
+5. Click **Try in chat**, or open a new chat, attach a document and write `/crux`.
+6. To update later: open Crux in **Plugins** and click **Update**.
+
+**B. As a skill** (if you don't see Plugins)
 
 1. Download **[crux.zip](https://github.com/fontai/crux/releases/latest/download/crux.zip)**. Don't unzip it.
-2. In Claude, open **Settings → Customize** and switch to the **Skills** tab.
-3. Click **+ Add** → **Upload skill** and choose `crux.zip`. Make sure CRUX is switched on
-   under **Yours**.
-4. Check that **Settings → Capabilities → Create and edit files** is on ("Skills need this
-   on"); it needs **Artifacts** on too. On Team or Enterprise, an owner turns it on in
-   **Organization settings → Plugins & skills**.
-5. Open a new chat, attach a document and write `crux`. For fact-checking, the chat needs
-   web search; without it CRUX offers the Quick depth.
+2. **Settings → Customize → Skills → + Add → Upload skill** and choose `crux.zip`.
+
+For both: **Settings → Capabilities → Create and edit files** must be on ("Skills need this
+on"); it needs **Artifacts** on too. On Team or Enterprise, an owner turns it on in
+**Organization settings → Plugins & skills**. For fact-checking, the chat needs web search;
+without it CRUX offers the Quick depth.
 
 If the names in Claude have changed, [Anthropic's guide to skills](https://support.claude.com/en/articles/12512180-using-skills-in-claude)
 has the current steps.
@@ -104,7 +114,8 @@ CRUX checks once a day and tells you when a new version is out, with the command
 
 - Claude Code: `claude plugin update crux@fontai`, then a new session. You can also turn
   on auto-update for the `fontai` marketplace in `/plugin`.
-- Claude app: download the new `crux.zip` and upload it again.
+- Claude app: open Crux in **Settings → Customize → Plugins** and click **Update**
+  (or, if you installed the zip, upload the new `crux.zip`).
 
 ## Feedback
 
@@ -151,7 +162,8 @@ asks you to.
 `skills/crux/` is the skill (`SKILL.md` + `references/` loaded on demand + `scripts/`).
 `.claude-plugin/` makes this repo a Claude Code plugin marketplace.
 
-To release, bump the version in `skills/crux/VERSION` and `.claude-plugin/plugin.json`,
+To release, bump the version in `skills/crux/VERSION`, `.claude-plugin/plugin.json` and
+`.claude-plugin/marketplace.json`,
 update `CHANGELOG.md`, commit, then tag `vX.Y.Z` and push the tag. CI checks that the
 versions match and attaches `crux.zip` to the GitHub release.
 
