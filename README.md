@@ -1,65 +1,149 @@
-# crux
+# Fontai CRUX
 
-**Get to the crux of long documents.** You get a long analysis (often AI-generated) and
-need to decide without reading all of it. crux gives you:
+**Get to the crux of long documents.** You receive a long analysis (often AI-generated)
+and need to decide without reading all of it. Give it to CRUX and get, on one screen:
 
-- **Shrnutí na jednu obrazovku**: a verdict on the first line (Schválit / Upravit /
-  Vrátit / Chybí info), the main message, recommendations aimed at *your* decision,
-  risks and gaps, and questions for the author. Every point links to its section or page.
-- **Scoring kvality**: seven criteria on a 1–5 scale with evidence, a fact-check of the
-  claims the conclusions rest on, a check that cited sources really exist, and
-  independent research to compare against.
-- **Odhad zadání**: what the author was probably asked to do, and why.
+- **Verdict first**: Schválit / Upravit / Vrátit / Chybí info, with one sentence why.
+- **Summary**: the main message, the key points, recommendations for *your* decision,
+  risks and gaps, and questions worth asking the author. Every point links to its
+  section or page, so you can check it in seconds.
+- **Quality score** (optional): seven criteria on a 1–5 scale, each with evidence. CRUX
+  fact-checks the claims the conclusions rest on, checks that the cited sources exist,
+  and compares the document with its own research.
+- **The brief behind it** (optional): what the author was most likely asked to do, and why.
 
-It is interactive. It asks what you want, how deep to go (with the expected time),
-what the author's brief was, and what decision you need to make. It replies in your
-language. Input: Markdown, DOCX, PDF or pasted text.
+Works with Markdown, Word (.docx), PDF or pasted text. It replies in your language.
+
+---
 
 ## Install
 
-### Claude Code (recommended)
+### Easiest: let Claude do it
+
+In **Claude Code**, paste:
 
 ```
-/plugin marketplace add fontai/crux
-/plugin install crux@fontai
+Read https://github.com/fontai/crux/blob/main/README.md and install the crux skill.
 ```
 
-Updates: `claude plugin update crux@fontai`, or turn on auto-update for the `fontai`
-marketplace in `/plugin`. crux also checks once a day and tells you when a new version
-is out.
+### Claude Code: by hand
+
+```bash
+claude plugin marketplace add fontai/crux
+claude plugin install crux@fontai
+```
+
+Start a new Claude Code session afterwards. Inside a session you can use
+`/plugin marketplace add fontai/crux` and `/plugin install crux@fontai` instead.
 
 ### Claude app (web, desktop, mobile)
 
-1. Download `crux.zip` from the [latest release](https://github.com/fontai/crux/releases/latest).
-2. Claude → Settings → Capabilities → Skills → upload `crux.zip`. Code execution must
-   be on. For research, web search must be on too.
-3. The skill then works in the web, desktop and mobile apps on the same account.
+1. Download **[crux.zip](https://github.com/fontai/crux/releases/latest/download/crux.zip)**.
+2. In Claude open **Settings → Capabilities**. Make sure **Code execution** is on, and
+   turn on **web search** if you want fact-checking.
+3. Under **Skills**, click **Upload skill** and pick `crux.zip`.
 
-To update, upload the newer zip.
+It is then available on the web, desktop and mobile apps of the same account.
+
+---
 
 ## Use
 
-Say "crux" together with the document, e.g. *"crux tohle: report.pdf"*, or just
-*"analyzuj tenhle dokument"* (crux then offers itself). You can say up front what you
-want: *"crux report.pdf, jen shrnutí, rychle"*. crux still confirms before it starts.
+Mention **crux** together with the document:
 
-| Hloubka | What it does | Time |
-|---|---|---|
-| Rychle | only the document, no web | ~1–3 min |
-| Standard | + web check of the key claims and cited sources | ~5–10 min |
-| Hloubkově | + independent research by parallel researchers | ~15–30 min |
+```
+crux report.pdf
+crux this document: ~/Downloads/analysis.docx
+```
 
-## Principles
+You can also paste the text or attach the file. If you just say *"analyze this
+document"*, CRUX offers itself first.
 
-- No made-up sources: only URLs opened during the run, otherwise marked *neověřeno*.
-- Strict scoring; praise needs evidence, the same as criticism.
-- Research runs in subagents (Claude Code), so your main session stays small.
-  They use your current model unless you ask otherwise.
-- Output stays in the chat. Ask if you want it saved or exported.
+CRUX then asks four quick questions (or confirms what you already said):
+
+1. **What to do**: summary, quality score, guess the author's brief
+2. **How deep**: the time is always shown, so you know what to expect
+
+   | Depth | What it does | Time |
+   |---|---|---|
+   | Rychle (quick) | only the document, no web | ~1–3 min |
+   | Standard | + web check of the key claims and the cited sources | ~5–10 min |
+   | Hloubkově (deep) | + independent research by parallel researchers | ~15–30 min |
+
+3. **The author's brief**: paste it if you have it. Without it CRUX can only guess what
+   the document was for, and tells you so.
+4. **Your decision**: what you need to decide. The recommendations aim at that.
+
+You can say it all up front: `crux report.pdf, summary only, quick, I need to decide whether to approve it`.
+
+The answer stays in the chat. Ask if you want it saved or exported (Markdown, PDF, …).
+
+## What CRUX promises
+
+- **No made-up sources.** It only cites pages it actually opened during the run;
+  anything else is marked *unverified*. Quotes and numbers are checked against the text.
+- **Strict scoring.** AI models tend to go easy on AI-written text. CRUX needs the same
+  evidence for praise as for criticism.
+- **Your session stays light.** In Claude Code the research runs in subagents, which
+  return only short findings. They use your current model.
+- **Privacy.** Web searches use generic terms about the topic, never names, numbers or
+  other details from your document.
+
+## Update
+
+CRUX checks once a day and tells you when a new version is out, with the command to run.
+
+- Claude Code: `claude plugin update crux@fontai`, then a new session. You can also turn
+  on auto-update for the `fontai` marketplace in `/plugin`.
+- Claude app: download the new `crux.zip` and upload it again.
+
+## Feedback
+
+Found a wrong verdict, a missed problem or a confusing answer?
+[Open an issue](https://github.com/fontai/crux/issues), and attach the document if you can share it.
+
+---
+
+## For AI agents: how to install CRUX for the user
+
+Follow these steps exactly and report the result to the user.
+
+1. **Check the environment.** Run `claude --version`.
+   - It works (Claude Code): continue with step 2.
+   - No shell or no `claude` CLI (for example the Claude app): you cannot install it
+     yourself. Give the user the three steps under *Claude app* above with the
+     download link, and stop.
+2. **Install:**
+   ```bash
+   claude plugin marketplace add fontai/crux
+   claude plugin install crux@fontai
+   ```
+   If the marketplace already exists, run `claude plugin marketplace update fontai`
+   instead of `add`.
+3. **Verify:** `claude plugin list` must show `crux@fontai` as enabled.
+4. **If the plugin commands fail** (old Claude Code, plugins disabled by policy), install
+   it as a personal skill:
+   ```bash
+   git clone https://github.com/fontai/crux.git ~/.claude/crux
+   mkdir -p ~/.claude/skills && ln -s ~/.claude/crux/skills/crux ~/.claude/skills/crux
+   ```
+   Updates then come from `git -C ~/.claude/crux pull`.
+5. **Tell the user:** CRUX is installed and they need to **start a new Claude Code
+   session**. Then they can say `crux <path to a document>`. Mention that the first run may
+   ask to allow the skill; they can choose "always allow".
+
+Do not change any other settings and do not run CRUX on a document unless the user
+asks you to.
+
+---
 
 ## Development
 
-`skills/crux/` is the skill; `.claude-plugin/` makes the repo a Claude Code plugin
-marketplace. To release: bump the version in `skills/crux/VERSION` and
-`.claude-plugin/plugin.json`, update `CHANGELOG.md`, then tag `vX.Y.Z` and push. CI
-checks that the versions match and attaches `crux.zip` to the release.
+`skills/crux/` is the skill (`SKILL.md` + `references/` loaded on demand + `scripts/`).
+`.claude-plugin/` makes this repo a Claude Code plugin marketplace.
+
+To release, bump the version in `skills/crux/VERSION` and `.claude-plugin/plugin.json`,
+update `CHANGELOG.md`, commit, then tag `vX.Y.Z` and push the tag. CI checks that the
+versions match and attaches `crux.zip` to the GitHub release.
+
+MIT License.

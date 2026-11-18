@@ -2,12 +2,16 @@
 name: crux
 description: Get to the crux of a long document (often an AI-generated analysis) so the user can decide without reading it all — one-screen summary with a verdict, strict evidence-based quality scoring with fact and source checking, reconstructed brief of the author. Use when the user says "crux", or asks to analyse, summarise/TLDR, review, score or fact-check a document (md, docx, pdf, pasted text) — e.g. "analyzuj dokument", "shrň mi to", "zhodnoť tuhle analýzu", "je to dobrá analýza?". If the user did not name crux, offer it first instead of starting.
 license: MIT
+allowed-tools: Read Grep Glob WebSearch WebFetch Bash(python3 ${CLAUDE_SKILL_DIR}/scripts/extract.py *) Bash(bash ${CLAUDE_SKILL_DIR}/scripts/check_update.sh)
 ---
 
 # crux
 
 Goal: a decision maker gets the core of a long document on **one screen** and an
 honest, evidence-based judgement of its quality — without reading it.
+
+`${CLAUDE_SKILL_DIR}` below is this skill's folder (where this file is). If it was not
+filled in for you (claude.ai), use the folder path of this file instead.
 
 ## Integrity rules (apply to every step)
 
@@ -26,13 +30,13 @@ honest, evidence-based judgement of its quality — without reading it.
 
 ## Step 0 — Update check (only if you can run shell commands)
 
-Run `bash <skill-dir>/scripts/check_update.sh`. Empty output = up to date, say nothing.
+Run `bash ${CLAUDE_SKILL_DIR}/scripts/check_update.sh`. Empty output = up to date, say nothing.
 If it prints a line, add it once at the very end of your reply. Never update without
 the user's yes.
 
 ## Step 1 — Load the document
 
-- File path → `python3 <skill-dir>/scripts/extract.py <path>`. It writes plain text with
+- File path → `python3 ${CLAUDE_SKILL_DIR}/scripts/extract.py <path>`. It writes plain text with
   page markers / headings to a file and prints only the outline, size and path. Read
   that file (whole, or by line ranges for long ones). In Claude Code a PDF can also be
   read directly with the Read tool (`pages`).
@@ -75,7 +79,7 @@ ask only for the brief in one short message.
 
 ## Step 3 — Analyse
 
-Load only the references you need:
+Load only the references you need (`${CLAUDE_SKILL_DIR}/references/…`):
 
 | When | Read |
 |---|---|
