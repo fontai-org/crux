@@ -1,0 +1,27 @@
+name: release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Versions must match the tag
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          skill="$(tr -d '[:space:]' < skills/crux/VERSION)"
+          plugin="$(jq -r .version .claude-plugin/plugin.json)"
+          echo "tag=$tag skill=$skill plugin=$plugin"
+          [ "$tag" = "$skill" ] && [ "$tag" = "$plugin" ]
+      - name: Build crux.zip
+        run: cd skills && zip -r ../crux.zip crux -x '*/__pycache__/*' '*.DS_Store'
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" crux.zip --title "crux $GITHUB_REF_NAME" --notes "See CHANGELOG.md"

@@ -1,0 +1,10 @@
+{
+  "name": "crux",
+  "version": "0.1.0",
+  "description": "Get to the crux of long documents: one-screen summary with a verdict, evidence-based quality scoring with fact and source checking, and the reconstructed brief.",
+  "author": { "name": "Fontai" },
+  "homepage": "https://github.com/fontai/crux",
+  "repository": "https://github.com/fontai/crux",
+  "license": "MIT",
+  "keywords": ["documents", "summary", "tldr", "review", "fact-check", "decision"]
+}
