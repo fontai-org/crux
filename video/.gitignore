@@ -1,0 +1,10 @@
+# Licensed DIN Pro (Fontai) — copied in by build.sh, never commit
+fonts/licensed/
+# copied from the design system by build.sh
+assets/fontai-logo-white.svg
+# render outputs / HyperFrames cache
+out/
+.hyperframes/
+snaps/
+node_modules/
+demo-doc/crux-run.jsonl

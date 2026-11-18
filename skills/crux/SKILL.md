@@ -49,7 +49,10 @@ Skim enough (headings, intro, conclusions) to propose decision options in Step 2
 
 ## Step 2 — Intake (always, even if the prompt already says what to do)
 
-Talk in the **language of the user's messages**, not the document's. Pre-fill whatever
+Talk in the **language of the user's messages**, not the document's. If the message
+gives no clue (e.g. only `crux report.pdf`), use the language of the conversation so
+far; if there is none, the document's language. The Czech wording in this skill is a
+template. Translate the questions, options and headings into that language. Pre-fill whatever
 the prompt already says and mark it `(Doporučeno)`; the intake then just confirms it.
 If the user did not name crux, open with one line offering it ("Můžu to projít přes
 crux:") and respect a "no".

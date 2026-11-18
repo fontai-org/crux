@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Fontai CRUX demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <script src="content.js"></script>
+    <script src="assets/pages/pages.js"></script>
+    <style>
+      /* DIN Pro is Fontai's licensed font: build.sh copies it into fonts/licensed/ (gitignored). */
+      @font-face { font-family: "DIN"; src: url("fonts/licensed/din.otf"); font-weight: 400; }
+      @font-face { font-family: "DIN"; src: url("fonts/licensed/din-med.otf"); font-weight: 500 700; }
+      /* JetBrains Mono, SIL OFL 1.1 (fonts/OFL-JetBrainsMono.txt). */
+      @font-face { font-family: "JBM"; src: url("fonts/jetbrains-mono-latin-400-normal.woff2"); font-weight: 400; }
+      @font-face { font-family: "JBM"; src: url("fonts/jetbrains-mono-latin-700-normal.woff2"); font-weight: 700; }
+      @font-face { font-family: "JBM"; src: url("fonts/jetbrains-mono-latin-ext-400-normal.woff2"); font-weight: 400; unicode-range: U+0100-024F, U+2000-20CF; }
+
+      :root {
+        --black: #000; --white: #fff; --cyan: #00d6ff; --red: #ff0000;
+        --grey: #8a8a8a; --dim: #6b6b6b; --line: #2a2a2a;
+        --sug: #b1b9f9;      /* Claude Code dark theme "suggestion" colour (pickers) */
+        --claude: #d97757;   /* Claude Code accent (✻) */
+        --din: "DIN", "DIN Alternate", Verdana, sans-serif;
+        --mono: "JBM", Menlo, monospace;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: #000; color: #fff; }
+      #root { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: #000; }
+      .layer { position: absolute; inset: 0; opacity: 0; }
+
+      /* ---------- intro / end card ---------- */
+      .brand { position: absolute; left: 0; right: 0; display: flex; align-items: flex-end; justify-content: center; gap: 44px; }
+      .brand img { display: block; }
+      .brand .word { font: 500 140px/0.72 var(--din); letter-spacing: 0.02em; color: #fff; }
+      #intro .brand { top: 420px; }
+      #intro .brand img { height: 100px; }
+      #intro .brand .word { font-size: 134px; }
+      #intro .tag { position: absolute; top: 600px; width: 100%; text-align: center; font: 400 48px var(--din); color: #d0d0d0; }
+
+      #end .brand { top: 330px; }
+      #end .brand img { height: 76px; }
+      #end .brand .word { font-size: 102px; }
+      #end .url { position: absolute; top: 500px; width: 100%; text-align: center; font: 500 72px var(--din); color: #fff; }
+      #end .url b { color: var(--cyan); font-weight: 500; }
+      #end .where { position: absolute; top: 620px; width: 100%; text-align: center; font: 400 40px var(--din); color: #a0a0a0; }
+
+      /* ---------- terminal window ---------- */
+      #term { position: absolute; left: 190px; top: 46px; width: 1540px; height: 884px; border: 1px solid #333; background: #050505; opacity: 0; }
+      #term .bar { height: 42px; border-bottom: 1px solid #222; font: 400 21px/42px var(--din); color: #777; text-align: center; position: relative; }
+      #term .bar i { position: absolute; top: 15px; width: 12px; height: 12px; background: #333; }
+      #term .body { position: absolute; left: 20px; right: 44px; top: 70px; bottom: 26px; overflow: hidden; }
+      #term .scroller { position: absolute; left: 0; right: 0; top: 0; padding-left: 24px; }
+      #term .body.bottom .scroller { top: auto; bottom: 0; }
+      .t { font: 400 28px/39px var(--mono); white-space: pre; color: #e8e8e8; min-height: 39px; }
+      .dim { color: var(--dim); }
+      .grey { color: var(--grey); }
+      .b { font-weight: 700; color: #fff; }
+      .cy { color: var(--cyan); }
+      .red { color: var(--red); }
+      .sug { color: var(--sug); }
+      .claude { color: var(--claude); }
+      .cur { background: #e8e8e8; color: #000; }
+      .usr { background: #1e1e1e; display: inline-block; padding-right: 16px; }
+      .tab { padding: 0 8px; }
+      .tab.on { background: var(--sug); color: #000; }
+      .rule { border-top: 1px solid #3a3a3a; height: 0; margin: 12px 0 10px; }
+      .hl { position: relative; z-index: 0; }
+      .warn { font-size: 34px; line-height: 1; }
+      .mark { position: absolute; left: -22px; top: 4px; bottom: 4px; width: 6px; }
+      .box { position: absolute; border: 2px solid var(--cyan); left: -18px; right: 40px; }
+      .flash { position: absolute; left: -12px; right: 0; top: 0; bottom: 0; background: rgba(255, 0, 0, 0.2); z-index: -1; }
+
+      /* ---------- document scene ---------- */
+      #doc .left { position: absolute; left: 140px; top: 300px; width: 680px; white-space: nowrap; }
+      #doc .fname { font: 400 30px var(--mono); color: #bbb; }
+      #doc .pg { font: 500 132px/1 var(--din); margin-top: 40px; color: #fff; }
+      #doc .pg small { font-size: 60px; color: #888; font-weight: 400; }
+      #doc .meta { font: 400 36px/1.4 var(--din); color: #999; margin-top: 36px; }
+      #doc .strip { position: absolute; left: 820px; top: 0; width: 960px; height: 1080px; overflow: hidden;
+        -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 140px, #000 940px, transparent 1080px); }
+      #doc .pages { position: absolute; left: 0; top: 0; width: 960px; }
+      #doc .pages img { position: absolute; width: 456px; height: 645px; background: #fff; display: block; }
+
+      /* ---------- caption + hint ---------- */
+      #cap { position: absolute; left: 190px; top: 968px; font: 500 40px var(--din); color: #fff; opacity: 0; white-space: nowrap; }
+      #cap .n { color: var(--cyan); margin-right: 22px; }
+      #hint { position: absolute; right: 190px; top: 972px; font: 400 34px var(--din); color: #9a9a9a; opacity: 0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="53.5" data-width="1920" data-height="1080">
+      <div id="intro" class="layer clip" data-start="0" data-duration="53.5">
+        <div class="brand"><img src="assets/fontai-logo-white.svg" alt="Fontai" /><div class="word">CRUX</div></div>
+        <div class="tag">Get to the crux of long documents.</div>
+      </div>
+
+      <div id="doc" class="layer clip" data-start="0" data-duration="53.5">
+        <div class="left">
+          <div class="fname" id="docname"></div>
+          <div class="pg" id="pgnum"></div>
+          <div class="meta" id="docmeta"></div>
+        </div>
+        <div class="strip"><div class="pages" id="pages"></div></div>
+      </div>
+
+      <div id="term" class="clip" data-start="0" data-duration="53.5">
+        <div class="bar"><i style="left:18px"></i><i style="left:40px"></i><i style="left:62px"></i><span id="title"></span></div>
+        <div class="body" id="tbody"><div class="scroller" id="scroller"></div></div>
+      </div>
+
+      <div id="end" class="layer clip" data-start="0" data-duration="53.5">
+        <div class="brand"><img src="assets/fontai-logo-white.svg" alt="Fontai" /><div class="word">CRUX</div></div>
+        <div class="url">crux.fontai.org</div>
+        <div class="where">Claude Code · Claude app</div>
+      </div>
+
+      <div id="cap" class="clip" data-start="0" data-duration="53.5"></div>
+      <div id="hint" class="clip" data-start="0" data-duration="53.5"></div>
+    </div>
+
+    <script src="scenes.js"></script>
+    <script>
+      const P = { t: 0 };
+      const tl = gsap.timeline({ paused: true });
+      tl.to(P, { t: DURATION, duration: DURATION, ease: "none", onUpdate: () => renderAt(P.t) }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+      renderAt(0);
+    </script>
+  </body>
+</html>

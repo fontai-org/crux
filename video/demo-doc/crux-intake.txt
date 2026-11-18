@@ -1,0 +1,17 @@
+Můžu to projít přes crux. Dokument jsem načetl: jde o návrh pro představenstvo Northwind Logistics na čtyřdenní pracovní týden (15 kapitol, ~15 tis. slov). Než začnu, potřebuju čtyři odpovědi:
+
+1. **Co udělat:** Shrnutí na jednu obrazovku *(Doporučeno)*, Scoring kvality, Odhad zadání autora. Můžeš vybrat víc.
+2. **Hloubka:**
+   - **Rychle · ~1–3 min:** jen dokument, bez webu.
+   - **Standard · ~5–10 min:** navíc ověřím na webu 5–8 tvrzení, na kterých stojí závěry, a zdroje, které dokument cituje. *(Doporučeno)*
+   - **Hloubkově · ~15–30 min:** navíc nezávislý research a kontrola všech citovaných zdrojů.
+3. **Zadání autorovi:** „Vložím ho“, nebo „Nemám, odhadni ho“.
+4. **Jaké rozhodnutí děláš?**
+   - a) Schválit celý návrh: čtyřdenní týden pro všechny, pilot i rollout.
+   - b) Schválit jen pilot, rollout až podle jeho výsledků.
+   - c) Jen pochopit.
+   - Nebo napiš vlastní.
+
+Bez zadání budu zadání jen odhadovat, takže alignment bude orientační a doporučení obecnější.
+
+Stačí napsat *ok* (tedy Shrnutí · Standard · zadání odhadnu · rozhodnutí b).

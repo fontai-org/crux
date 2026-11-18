@@ -1,0 +1,67 @@
+**VERDICT: Return.** The productivity study the whole business case rests on could not be found anywhere, and the document contradicts its own numbers. A pilot can still make sense, but approve it on its own terms, not on the terms of this document.
+
+Brief: not supplied. My guess is "Should Northwind move to a four-day week? Give the evidence, options, financial case and plan for the Board" (high confidence: title, §1.1). Without the brief, the alignment score is only approximate.
+Your decision: whether to approve a 3-month pilot.
+
+## Summary
+**Main message:** Introduce 100% pay for 80% of the time, with days off staggered across the week. Run a 6-month pilot with 56 people, then roll out to the whole company from Sep 2027 (§15.2).
+- Current state looks strained. Voluntary turnover is 22.5%, absence 6.8%, and overtime premiums EUR 486k, up 23%. All SLAs are below target (§4.3–4.6).
+- Financial model: net EUR 412k a year, 7-month payback, EUR 240k one-off cost (§8.5).
+- The model depends on a +27% productivity gain "from 340 logistics firms" (§5.4, §8.1).
+- 5 options were compared, and staggered days off won 21/25 (§7.8).
+
+## Recommendation for your decision
+- **Approve only the pilot.** Don't approve §15.2 items 1, 3 and 4 (four-day week for everyone, the rollout, hiring 6 people). The pilot is exactly how you would test the shaky assumptions.
+- **3 months is short.** Turnover can't be measured in 3 months, and early enthusiasm will inflate the results. A Feb–Apr pilot also misses the Oct–Dec peak and Saturday shifts (§7.10). Drivers, the biggest new cost at EUR 164k, are left out (§10.3).
+- **Set pass/fail criteria without the 27%.** Use output ≥ 95% of baseline (§10.4) and decide in advance what happens if the pilot fails.
+- **Before the start, get a legal check and a pilot-only budget.** The EUR 240k covers the whole programme. The pay-neutral reduction needs an internal regulation (§12.5).
+
+## Risks and gaps
+- ⚠ **The Henley Institute study (27%) looks made up.** Its domain doesn't exist and the title can't be found [1] (§5.4, App. C #3).
+- ⚠ **"40% less likely to quit" and "burnout drops by half" have no source.** The UK pilot measured something else: 57% fewer people left [2]. The 40% feeds the EUR 99k saving (§6.3, §8.4).
+- ⚠ **Net benefit is "EUR 1.2 million" in some places and EUR 412k in others** (Exec. Summary, §15.1 vs §8.5).
+- ⚠ **The warehouse has 46 people in one place and "64" in another** (§4.2 vs §7.9, §10.6).
+- ⚠ **The pilot's own targets don't fit together.** +15% output per hour × 80% of the hours = 92% of current output, below the 95% pass mark (§14.2 vs §10.4).
+- ⚠ **Some savings are counted twice.** The absence cost already includes overtime and agency workers, which are then saved again as separate lines (§4.4 vs §8.4).
+- ⚠ **The sensitivity analysis never tests the 27% itself.** Without the productivity gain, roughly 20% of capacity is missing (my inference) (§8.7).
+- ⚠ **The Risks section lists no risks**, only general reassurance (§13).
+- ⚠ **Legal issue:** for staff on two shifts, the legal maximum is 38.75 h a week, not 40 [3]. The document says the warehouse works two shifts on 40-hour contracts (§4.2, §4.3).
+- ⚠ **Other gaps:** "Experts agree" on customer satisfaction has no source (§9.3). The overtime baseline is 16.9 h, but the department data gives about 18.2 h (§14.2 vs §4.3).
+
+## Questions for the author
+1. Can you share the Henley report? If not, what is the case without the 27%, and what productivity gain is needed just to break even?
+2. Which figures are right: EUR 412k or EUR 1.2M, and 46 or 64 warehouse staff?
+3. What does the pilot alone cost, and how do we roll it back if output drops below 95%?
+
+## Scoring (depth: Standard · brief: guessed)
+**Overall 2.2/5 → Return** (a key source looks made up)
+- Alignment: 4 (approximate, left out of the average)
+- Accuracy: 2
+- Support: 2
+- Specificity: 3
+- Consistency: 1
+- Usefulness: 3
+- Depth: 2
+
+**Weakest points:**
+- **Consistency:** five contradictions, including EUR 1.2M vs 412k and 46 vs 64 staff (§8.5, §7.9).
+- **Accuracy and support:** the central source can't be found, and two figures behind the savings have no source (§5.4, §6.3).
+- **Depth:** the main assumption isn't stress-tested and the risks section is empty (§8.7, §13).
+
+**Confirmed against the web:** UK pilot (56/61 companies continued, 71% less burnout), Iceland (86%), Microsoft Japan (+39.9%, though Microsoft says the trial wasn't the only cause), Belgium 2022 (employees can only request it; the employer may refuse) [2][4][5][6].
+**Where the evidence contradicts the document:** in the UK pilot only about 13% of firms were in manufacturing, construction or engineering, none in logistics. So "the logistics sector is particularly well positioned" has no outside support (§5.4 vs [2]).
+
+**Author's effort (my estimate):** medium. There is real internal data and a version history, but also a made-up key source, an empty risks section, and the same filler phrase about a "rapidly evolving landscape" repeated throughout.
+
+**Worth checking before you decide:** (1) a break-even model without the 27%; (2) the two-shift hours limit and the internal regulation; (3) a pilot that covers the peak season and drivers, or a clear statement that it won't.
+
+The document's footer says it is fictional (made for a demo), so its internal figures can't be checked against anything real.
+
+[1] https://www.henley-iwf.org/reports/four-day-dividend-2023 (domain doesn't exist)
+[2] https://autonomy.work/wp-content/uploads/2023/02/The-results-are-in-The-UKs-four-day-week-pilot.pdf
+[3] https://www.zakonyprolidi.cz/cs/2006-262
+[4] https://autonomy.work/portfolio/icelandsww/
+[5] https://siliconcanals.com/t-microsoft-japan-four-day-week-2019-sales-meetings/
+[6] https://www.eubelius.com/en/news/hr-legal-autumn-2022-1-4-the-labour-deal
+
+Should I save this as `northwind-4-day-week.crux.md`? The most useful next step would be for me to draft the three questions for the author, plus pass/fail criteria for a 3-month pilot.

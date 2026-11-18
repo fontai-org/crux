@@ -1,6 +1,6 @@
 {
   "name": "crux",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Get to the crux of long documents: one-screen summary with a verdict, evidence-based quality scoring with fact and source checking, and the reconstructed brief.",
   "author": { "name": "Fontai" },
   "homepage": "https://github.com/fontai/crux",

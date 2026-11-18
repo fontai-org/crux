@@ -15,13 +15,14 @@ cp "$DS/assets/logo/fontai-logo-white.svg" assets/fontai-logo-white.svg
 
 # 2. Demo document -> PDF -> page thumbnails for the "huge document" scene.
 if [[ "${1:-}" != "--skip-doc" ]]; then
-  pandoc demo-doc/northwind-4-day-week.md -s --metadata title="Northwind four-day week analysis" \
+  pandoc demo-doc/northwind-4-day-week.md -s --metadata pagetitle="Northwind four-day week analysis" \
     -c doc.css -o demo-doc/northwind-4-day-week.html
   (cd demo-doc && weasyprint northwind-4-day-week.html northwind-4-day-week.pdf)
   rm -f demo-doc/northwind-4-day-week.html
   rm -rf assets/pages && mkdir -p assets/pages
-  pdftoppm -r 72 -jpeg -jpegopt quality=80 demo-doc/northwind-4-day-week.pdf assets/pages/p
-  ls assets/pages | wc -l | xargs echo "pages:"
+  pdftoppm -r 64 -jpeg -jpegopt quality=72 demo-doc/northwind-4-day-week.pdf assets/pages/p
+  (cd assets && ls pages/*.jpg | awk 'BEGIN{printf "window.PAGES = ["} {printf "%s\"assets/%s\"", (NR>1?",":""), $0} END{print "];"}' > pages/pages.js)
+  ls assets/pages | wc -l | xargs echo "files:"
 fi
 
 # 3. Render with HyperFrames (lossless-ish master), then encode the web file ourselves.
@@ -32,7 +33,7 @@ $HF render -o out/master.mp4 -q delivery --fps 30
   -profile:v high -level 4.1 -g 300 -movflags +faststart "$SITE_ASSETS/demo.mp4"
 
 # 4. Poster: the finished output screen.
-POSTER_AT="${POSTER_AT:-41.5}"
+POSTER_AT="${POSTER_AT:-37.9}"
 /opt/homebrew/bin/ffmpeg -y -loglevel error -ss "$POSTER_AT" -i out/master.mp4 -frames:v 1 \
   -q:v 4 "$SITE_ASSETS/demo-poster.jpg"
 ls -l "$SITE_ASSETS/demo.mp4" "$SITE_ASSETS/demo-poster.jpg"

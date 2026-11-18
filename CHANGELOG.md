@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.2 — 2026-11-18
+
+- Language: when the prompt gives no clue (just `crux file.pdf`), CRUX follows the earlier
+  conversation, then the document's language, and no longer defaults to Czech.
+- Website at https://crux.fontai.org with a demo video (source in `video/`).
+
 ## 0.1.1 — 2026-11-18
 
 - The skill pre-approves the tools it needs (reading its own files, web search, its
