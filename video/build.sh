@@ -27,13 +27,14 @@ fi
 
 # 3. Render with HyperFrames (lossless-ish master), then encode the web file ourselves.
 mkdir -p out "$SITE_ASSETS"
-$HF render -o out/master.mp4 -q delivery --fps 30
-/opt/homebrew/bin/ffmpeg -y -loglevel error -i out/master.mp4 -an \
-  -c:v libx264 -preset veryslow -crf 26 -tune animation -pix_fmt yuv420p \
-  -profile:v high -level 4.1 -g 300 -movflags +faststart "$SITE_ASSETS/demo.mp4"
+$HF render -o out/master.mp4 -q delivery --fps 30 --resolution 4k
+# 4K master -> 2560x1440 web file: sharp text on retina screens at ~1100 CSS px.
+/opt/homebrew/bin/ffmpeg -y -loglevel error -i out/master.mp4 -an -vf "scale=2560:1440:flags=lanczos" \
+  -c:v libx264 -preset veryslow -crf "${CRF:-24}" -tune animation -pix_fmt yuv420p \
+  -profile:v high -level 5.1 -g 300 -movflags +faststart "$SITE_ASSETS/demo.mp4"
 
 # 4. Poster: the finished output screen.
 POSTER_AT="${POSTER_AT:-37.9}"
-/opt/homebrew/bin/ffmpeg -y -loglevel error -ss "$POSTER_AT" -i out/master.mp4 -frames:v 1 \
+/opt/homebrew/bin/ffmpeg -y -loglevel error -ss "$POSTER_AT" -i out/master.mp4 -frames:v 1 -vf "scale=2560:1440:flags=lanczos" \
   -q:v 4 "$SITE_ASSETS/demo-poster.jpg"
 ls -l "$SITE_ASSETS/demo.mp4" "$SITE_ASSETS/demo-poster.jpg"
