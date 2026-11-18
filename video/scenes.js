@@ -22,6 +22,8 @@ const blink = (t) => (Math.floor(t * 2) % 2 === 0 ? '<span class="cur"> </span>'
 const solid = '<span class="cur"> </span>';
 const L = (html, cls = "") => `<div class="t ${cls}">${html || ""}</div>`;
 const C = window.CRUX;
+/* whole device pixels (4K render = 2x): fractional offsets make thin glyphs shimmer */
+const snap = (v) => Math.round(v * 2) / 2;
 
 /* ---------------------------------------------------------------- install */
 function installLines(u) {
@@ -60,7 +62,7 @@ function renderDoc(u, len) {
   const startTop = 200, endTop = 1080 - 200 - rows * ROW + GAP;
   const k = easeIO(clamp((u - 0.5) / (len - 1.3), 0, 1));
   const top = startTop + (endTop - startTop) * k;
-  $("pages").style.transform = `translateY(${top}px)`;
+  $("pages").style.transform = `translateY(${snap(top)}px)`;
   const row = clamp(Math.floor((540 - top) / ROW), 0, rows - 1);
   const page = clamp(row * 2 + 2, 1, n);
   $("pgnum").innerHTML = `page ${u < 0.6 ? 1 : page} <small>/ ${n}</small>`;
@@ -170,7 +172,7 @@ function inputBox(text, cursorHtml) {
 
 function transcript(u) {
   const out = [];
-  out.push(L(`<span class="claude">✻</span> <span class="b">Claude Code</span> <span class="dim">${C.ccVersion}</span>`));
+  out.push(L(`<span class="claude">✻</span> <span class="b">Claude Code</span>`));
   out.push(L(`<span class="dim">  ${C.cwd}</span>`), L(""));
   if (u < CC.submit) return out;
   out.push(L(`<span class="usr"><span class="dim">&gt;</span> ${esc(PROMPT)}</span>`), L(""));
@@ -236,7 +238,7 @@ function renderOut(u, len) {
   for (let i = 0; i < rows.length; i++) rows[i].style.opacity = u > 0.15 + i * 0.05 ? 1 : 0;
   const maxScroll = Math.max(0, sc.scrollHeight - body.clientHeight + 10);
   const k = easeIO(clamp((u - 4.6) / 7.6, 0, 1));
-  sc.style.transform = `translateY(${-maxScroll * k}px)`;
+  sc.style.transform = `translateY(${snap(-maxScroll * k)}px)`;
   // highlights
   sc.querySelectorAll(".mark,.box,.flash").forEach((e) => e.remove());
   const v = sc.querySelector(".k-verdict");

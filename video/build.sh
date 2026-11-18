@@ -30,7 +30,7 @@ mkdir -p out "$SITE_ASSETS"
 $HF render -o out/master.mp4 -q delivery --fps 30 --resolution 4k
 # 4K master -> 2560x1440 web file: sharp text on retina screens at ~1100 CSS px.
 /opt/homebrew/bin/ffmpeg -y -loglevel error -i out/master.mp4 -an -vf "scale=2560:1440:flags=lanczos" \
-  -c:v libx264 -preset veryslow -crf "${CRF:-24}" -tune animation -pix_fmt yuv420p \
+  -c:v libx264 -preset veryslow -crf "${CRF:-24}" -tune animation -x264-params "aq-mode=3:deblock=-1,-1" -pix_fmt yuv420p \
   -profile:v high -level 5.1 -g 300 -movflags +faststart "$SITE_ASSETS/demo.mp4"
 
 # 4. Poster: the finished output screen.

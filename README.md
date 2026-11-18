@@ -42,9 +42,10 @@ In **VS Code** you can open
 ### Claude app (web, desktop, mobile)
 
 1. Download **[crux.zip](https://github.com/fontai/crux/releases/latest/download/crux.zip)**.
-2. In Claude open **Settings → Capabilities**. Make sure **Code execution** is on, and
-   turn on **web search** if you want fact-checking.
-3. Under **Skills**, click **Upload skill** and pick `crux.zip`.
+2. In Claude's settings, find **Skills**. Skills need **code execution** turned on; turn on
+   **web search** too if you want fact-checking.
+3. Upload `crux.zip` as a new skill and make sure it's switched on.
+   Anthropic's current steps: [Using skills in Claude](https://support.claude.com/en/articles/12512180-using-skills-in-claude).
 
 It is then available on the web, desktop and mobile apps of the same account.
 

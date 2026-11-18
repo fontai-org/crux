@@ -1,11 +1,10 @@
 /* Texts shown in the demo. The CRUX answer and the progress lines come from a real run:
    demo-doc/crux-output.txt and demo-doc/crux-run.jsonl (trimmed only for length). */
-const W = '<span class="red warn">⚠</span>';
+const W = '<span class="warn"></span>';
 const B = (s) => `<span class="b">${s}</span>`;
 window.CRUX = {
-  file: "northwind-4-day-week.md",
+  file: "northwind-4-day-week.pdf",
   docMeta: "40 pages · ~14,000 words<br>about an hour to read",
-  ccVersion: "v2.1",
   cwd: "~/board",
   hint: "real run: 4 min 34 s → shown in 4 s",
 
@@ -63,7 +62,7 @@ window.CRUX = {
   /* progress lines, from the tool calls in crux-run.jsonl */
   runSeconds: 274,
   work: [
-    ["Bash(extract.py northwind-4-day-week.md)", "40 pages · 15 sections · load-bearing claims mapped"],
+    ["Bash(extract.py northwind-4-day-week.pdf)", "40 pages · 15 sections · load-bearing claims mapped"],
     ["Agent(Fact-check load-bearing claims)", "6 web searches · 13 pages opened"],
     ["Fetch(henley-iwf.org/reports/four-day-dividend-2023)", '<span class="red">domain doesn\'t exist</span>'],
     ["Bash(Recompute document figures and grep key quotes)", "EUR 412k (§8.5) ≠ EUR 1.2 million (Exec. Summary)"],
