@@ -50,7 +50,7 @@
       "description": "A free skill for Claude that reads long documents and answers on one screen: a verdict, the key points, risks and gaps, questions for the author, and an evidence-based quality score with fact and source checking.",
       "applicationCategory": "BusinessApplication",
       "applicationSubCategory": "Claude skill",
-      "operatingSystem": "Claude Code, Claude app (web, desktop, mobile)",
+      "operatingSystem": "Claude Code, Claude app (web, desktop)",
       "isAccessibleForFree": true,
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
       "license": "https://opensource.org/licenses/MIT",
@@ -162,7 +162,7 @@
   .steps { margin: 16px 0 0 20px; color: var(--muted); font-size: 16px; }
   .steps li { margin-bottom: 14px; padding-left: 6px; }
   .steps li::marker { color: var(--accent); }
-  .steps strong { color: var(--white); font-weight: 500; }
+  .steps strong, .note strong { color: var(--white); font-weight: 500; }
   .steps code, .note code { font-family: var(--mono); color: var(--white); font-size: 14px; }
   .steps a:not(.btn), .note a { color: var(--white); }
   .steps .code { margin-top: 10px; font-size: 14px; white-space: pre-wrap; overflow-wrap: anywhere; padding-right: 84px; }
@@ -257,7 +257,7 @@
         </div>
         <div class="panel" id="p-app" role="tabpanel" aria-labelledby="t-app" hidden>
           <a class="btn primary" href="https://github.com/fontai/crux/releases/latest/download/crux.zip">Download crux.zip</a>
-          <p class="alts">Then upload it in Claude's settings, under <strong>Skills</strong> (<a href="https://support.claude.com/en/articles/12512180-using-skills-in-claude">Anthropic's guide</a>). Skills need code execution turned on; web search enables fact-checking. Works on web, desktop and phone, on the same account.<br><a href="#install-steps">Step-by-step instructions and help ↓</a></p>
+          <p class="alts">Then in Claude: <a href="https://claude.ai/customize/skills"><strong>Customize → Skills</strong></a> → <strong>+</strong> → <strong>Create skill</strong> → <strong>Upload a skill</strong> → choose <code>crux.zip</code>.<br><a href="#install-steps">Step-by-step instructions and help ↓</a></p>
         </div>
       </div>
       </div>
@@ -286,16 +286,16 @@ claude plugin install crux@fontai</span><button class="copy" type="button">Copy<
           </ol>
         </div>
         <div>
-          <h3>Claude app <span class="sub">web · desktop · phone</span></h3>
+          <h3>Claude app <span class="sub">web · desktop</span></h3>
           <ol class="steps">
             <li><a class="btn primary" href="https://github.com/fontai/crux/releases/latest/download/crux.zip">Download crux.zip</a><br>Don't unzip it.</li>
-            <li>Open Claude's <strong>settings</strong> and find <strong>Skills</strong>. On a computer is easiest. If you can't find it, follow <a href="https://support.claude.com/en/articles/12512180-using-skills-in-claude">Anthropic's guide to skills</a>.</li>
-            <li>Turn on <strong>code execution</strong>. Skills need it.</li>
-            <li>Turn on <strong>web search</strong> if you want claims and sources fact-checked.</li>
-            <li>Upload <code>crux.zip</code> as a new skill and make sure it's switched on.</li>
-            <li>Open a new chat, attach a document and write <code>crux</code>. It also works on your phone, on the same account.</li>
+            <li>In Claude, open <a href="https://claude.ai/customize/skills"><strong>Customize → Skills</strong></a>.</li>
+            <li>Click <strong>+</strong> → <strong>Create skill</strong> → <strong>Upload a skill</strong> and choose <code>crux.zip</code>. Make sure CRUX is switched on in the list.</li>
+            <li>Claude says it needs code execution? Open <strong>Settings → Capabilities</strong> and turn on <strong>Create and edit files</strong> (older name: <strong>Code execution and file creation</strong>).</li>
+            <li>Open a new chat, attach a document and write <code>crux</code>.</li>
+            <li>For fact-checking, CRUX needs web search in that chat. If it isn't available, CRUX tells you and offers the Quick depth.</li>
           </ol>
-          <p class="note">Your company uses Claude Team or Enterprise? An owner can upload it once and share it with the whole organization.</p>
+          <p class="note">Claude Team or Enterprise? Code execution is turned on by an owner in <strong>Organization settings → Plugins &amp; skills</strong>. An owner can also upload CRUX once and share it with the whole organization.<br>Names in Claude changed? <a href="https://support.claude.com/en/articles/12512180-using-skills-in-claude">Anthropic's guide to skills</a> always has the current steps.</p>
         </div>
       </div>
       <p class="note">Still stuck? <a href="https://github.com/fontai/crux/issues">Tell us</a>, or ask Claude: <em>“Read https://github.com/fontai/crux/blob/main/README.md and install the crux skill.”</em></p>

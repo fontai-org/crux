@@ -39,15 +39,20 @@ Start a new Claude Code session afterwards.
 In **VS Code** you can open
 `vscode://anthropic.claude-code/install-plugin?plugin=crux&marketplace=fontai/crux`.
 
-### Claude app (web, desktop, mobile)
+### Claude app (web, desktop)
 
-1. Download **[crux.zip](https://github.com/fontai/crux/releases/latest/download/crux.zip)**.
-2. In Claude's settings, find **Skills**. Skills need **code execution** turned on; turn on
-   **web search** too if you want fact-checking.
-3. Upload `crux.zip` as a new skill and make sure it's switched on.
-   Anthropic's current steps: [Using skills in Claude](https://support.claude.com/en/articles/12512180-using-skills-in-claude).
+1. Download **[crux.zip](https://github.com/fontai/crux/releases/latest/download/crux.zip)**. Don't unzip it.
+2. In Claude, open **[Customize → Skills](https://claude.ai/customize/skills)**.
+3. Click **+** → **Create skill** → **Upload a skill** and choose `crux.zip`. Make sure CRUX is
+   switched on in the list.
+4. If Claude says it needs code execution: **Settings → Capabilities** → turn on
+   **Create and edit files** (older name: **Code execution and file creation**).
+   On Team or Enterprise, an owner turns it on in **Organization settings → Plugins & skills**.
+5. Open a new chat, attach a document and write `crux`. For fact-checking, the chat needs
+   web search; without it CRUX offers the Quick depth.
 
-It is then available on the web, desktop and mobile apps of the same account.
+If the names in Claude have changed, [Anthropic's guide to skills](https://support.claude.com/en/articles/12512180-using-skills-in-claude)
+has the current steps.
 
 ---
 
@@ -115,7 +120,7 @@ Follow these steps exactly and report the result to the user.
 1. **Check the environment.** Run `claude --version`.
    - It works (Claude Code): continue with step 2.
    - No shell or no `claude` CLI (for example the Claude app): you cannot install it
-     yourself. Give the user the three steps under *Claude app* above with the
+     yourself. Give the user the steps under *Claude app* above with the
      download link, and stop.
 2. **Install:**
    ```bash
