@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  <url>
+    <loc>https://crux.fontai.org/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://crux.fontai.org/assets/demo-poster.jpg</video:thumbnail_loc>
+      <video:title>Fontai CRUX demo: from a 40-page document to one screen</video:title>
+      <video:description>Install CRUX, hand it a long analysis, answer four questions and get a verdict, summary, risks and a fact-checked score.</video:description>
+      <video:content_loc>https://crux.fontai.org/assets/demo.mp4</video:content_loc>
+      <video:duration>54</video:duration>
+    </video:video>
+  </url>
+</urlset>

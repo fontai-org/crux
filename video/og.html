@@ -1,0 +1,53 @@
+<!doctype html>
+<!-- Social preview card (Open Graph image), 1200x630. Rendered by og.sh into site/assets/og.png. -->
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: "DIN"; src: url("fonts/licensed/din.otf"); font-weight: 400; }
+  @font-face { font-family: "DIN"; src: url("fonts/licensed/din-med.otf"); font-weight: 500 700; }
+  @font-face { font-family: "JBM"; src: url("fonts/jetbrains-mono-latin-400-normal.woff2"); font-weight: 400; }
+  @font-face { font-family: "JBM"; src: url("fonts/jetbrains-mono-latin-700-normal.woff2"); font-weight: 700; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; background: #000; color: #fff; overflow: hidden; }
+  .card { position: relative; width: 1200px; height: 630px; padding: 64px 72px; }
+  .brand { display: flex; align-items: center; gap: 20px; }
+  .brand img { height: 40px; }
+  .brand span { font: 500 34px/1 "DIN"; letter-spacing: 0.08em; padding: 4px 0 0 20px; border-left: 2px solid #fff; }
+  h1 { font: 500 76px/1.04 "DIN"; letter-spacing: -0.01em; margin-top: 70px; width: 640px; }
+  p { font: 400 28px/1.35 "DIN"; color: #a6a6a6; margin-top: 26px; width: 600px; }
+  .url { position: absolute; left: 72px; bottom: 60px; font: 500 28px "DIN"; color: #fff; }
+  .url b { color: #00d6ff; font-weight: 500; }
+  .term { position: absolute; right: 64px; top: 150px; width: 440px; border: 2px solid #4a4a4a; background: #070707;
+          font: 400 19px/29px "JBM"; color: #e0e0e0; padding: 22px 24px; white-space: pre; }
+  .term .bar { position: absolute; left: 0; right: 0; top: 0; height: 26px; border-bottom: 1px solid #222; }
+  .term .bar i { position: absolute; top: 9px; width: 8px; height: 8px; background: #3a3a3a; }
+  .term .in { margin-top: 18px; }
+  .v { color: #00d6ff; font-weight: 700; }
+  .dim { color: #8a8a8a; }
+  .b { font-weight: 700; color: #fff; }
+  .warn { display: inline-block; position: relative; width: 11.4px; height: 16px; vertical-align: -2px; }
+  .warn::before { content: ""; position: absolute; left: -3px; right: -3px; top: 0; bottom: 0; background: #ff0000;
+                  clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+  .warn::after { content: "!"; position: absolute; left: 0; right: 0; top: 4px; text-align: center; font: 700 11px/11px "DIN"; color: #000; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="brand"><img src="assets/fontai-logo-white.svg" alt=""><span>CRUX</span></div>
+  <h1>Get to the crux of long documents.</h1>
+  <p>Verdict, summary and a fact-checked quality score on one screen. A free skill for Claude.</p>
+  <div class="url">crux<b>.</b>fontai.org</div>
+  <div class="term"><div class="bar"><i style="left:10px"></i><i style="left:22px"></i><i style="left:34px"></i></div><div class="in"><span class="v">VERDICT: Return.</span> The key
+study can't be found and
+the numbers contradict.
+
+<span class="b">Risks and gaps</span>
+<span class="warn"></span> Source looks made up (§5.4)
+<span class="warn"></span> EUR 1.2M vs 412k (§8.5)
+<span class="warn"></span> No risks listed (§13)
+
+<span class="b">Scoring</span> <span class="dim">2.2/5 → Return</span></div></div>
+</div>
+</body>
+</html>
