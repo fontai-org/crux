@@ -42,12 +42,12 @@ In **VS Code** you can open
 ### Claude app (web, desktop)
 
 1. Download **[crux.zip](https://github.com/fontai/crux/releases/latest/download/crux.zip)**. Don't unzip it.
-2. In Claude, open **[Customize → Skills](https://claude.ai/customize/skills)**.
-3. Click **+** → **Create skill** → **Upload a skill** and choose `crux.zip`. Make sure CRUX is
-   switched on in the list.
-4. If Claude says it needs code execution: **Settings → Capabilities** → turn on
-   **Create and edit files** (older name: **Code execution and file creation**).
-   On Team or Enterprise, an owner turns it on in **Organization settings → Plugins & skills**.
+2. In Claude, open **Settings → Customize** and switch to the **Skills** tab.
+3. Click **+ Add** → **Upload skill** and choose `crux.zip`. Make sure CRUX is switched on
+   under **Yours**.
+4. Check that **Settings → Capabilities → Create and edit files** is on ("Skills need this
+   on"); it needs **Artifacts** on too. On Team or Enterprise, an owner turns it on in
+   **Organization settings → Plugins & skills**.
 5. Open a new chat, attach a document and write `crux`. For fact-checking, the chat needs
    web search; without it CRUX offers the Quick depth.
 
