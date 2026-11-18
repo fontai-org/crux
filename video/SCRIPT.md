@@ -27,3 +27,9 @@ Timings live in `scenes.js` (`S`), texts in `content.js`.
 - Intake: `demo-doc/crux-intake.txt` (`claude -p "crux northwind-4-day-week.md"`). In `-p` mode there
   is no picker, so CRUX asked the four questions as one numbered message (in Czech, as no language
   cue was given). The video shows the same questions and options in English in Claude Code's picker.
+
+## Update 2026-11-18 (crux 0.1.5)
+
+Scene 5 and 6 now use a fresh Standard run of crux 0.1.5 (`demo-doc/crux-output-v015.txt`,
+4 min 14 s real time): the short default answer with the traffic-light verdict, locations
+as inline code, risk and score dots, and the recommendation of the full version.
