@@ -46,8 +46,8 @@
   /* hero */
   .hero { padding: 64px 0 56px; border-top: 0; }
   .hero h1 { font-size: clamp(40px, 7vw, 76px); line-height: 1.02; max-width: 900px; }
-  .hero p { font-size: 21px; color: var(--muted); max-width: 680px; margin: 22px 0 34px; }
-  .hero p strong { color: var(--white); font-weight: 500; }
+  .hero > .wrap > p { font-size: 21px; color: var(--muted); max-width: 680px; margin: 22px 0 30px; }
+  .hero > .wrap > p strong { color: var(--white); font-weight: 500; }
   .btns { display: flex; flex-wrap: wrap; gap: 12px; }
   .btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; font: 500 17px var(--sans); text-decoration: none; border: 1px solid var(--white); background: transparent; color: var(--white); cursor: pointer; }
   .btn:hover { background: var(--white); color: var(--black); }
@@ -83,6 +83,29 @@
   .copy.done { color: var(--accent); border-color: var(--accent); }
   .or { color: var(--muted); font-size: 15px; margin: 6px 0 22px 52px; }
 
+  .install { margin-top: 8px; max-width: 860px; }
+  .install .tabs { margin-top: 0; }
+  .install .panel { padding-top: 20px; }
+  .code.big { font-size: 18px; padding: 20px 100px 20px 22px; border-color: #5a5a5a; }
+  .alts { color: var(--muted); font-size: 15px; margin-top: 14px; line-height: 1.7; }
+  .alts a { color: var(--white); }
+  .alts code { font-family: var(--mono); color: var(--white); font-size: 14px; }
+  .alts strong { color: var(--white); font-weight: 500; }
+
+  .grid.two { grid-template-columns: 1fr 1fr; }
+  .grid.two > div { padding-right: 32px; }
+  .grid.two > div + div { padding-left: 32px; padding-right: 0; }
+  .grid h3 .sub { color: var(--muted); font-size: 15px; font-weight: 400; margin-left: 8px; }
+  .steps { margin: 16px 0 0 20px; color: var(--muted); font-size: 16px; }
+  .steps li { margin-bottom: 14px; padding-left: 6px; }
+  .steps li::marker { color: var(--accent); }
+  .steps strong { color: var(--white); font-weight: 500; }
+  .steps code, .note code { font-family: var(--mono); color: var(--white); font-size: 14px; }
+  .steps a:not(.btn), .note a { color: var(--white); }
+  .steps .code { margin-top: 10px; font-size: 14px; white-space: pre-wrap; overflow-wrap: anywhere; padding-right: 84px; }
+  .steps .btn { margin-bottom: 6px; }
+  .note { color: var(--muted); font-size: 15px; margin-top: 28px; }
+
   /* example output */
   .term { background: #0d0d0d; border: 1px solid var(--rule); margin-top: 36px; font: 400 15px/1.65 var(--mono); padding: 26px 28px; overflow-x: auto; white-space: pre-wrap; color: #d9d9d9; }
   .term b { color: var(--white); font-weight: 400; }
@@ -101,6 +124,8 @@
 
   @media (max-width: 860px) {
     .grid, .grid.three { grid-template-columns: 1fr 1fr; border-top: 0; }
+    .grid.two { grid-template-columns: 1fr; }
+    .grid.two > div, .grid.two > div + div { padding-left: 0; padding-right: 0; }
     .grid > div, .grid > div + div { border-right: 0; border-top: 1px solid var(--white); padding: 22px 16px 24px 0; }
     nav a:not(:last-child) { display: none; }
   }
@@ -114,7 +139,9 @@
     .or { margin-left: 0; }
     .step { grid-template-columns: 32px 1fr; }
     .term { padding: 18px 16px; font-size: 13px; }
-    .code { white-space: pre-wrap; word-break: break-all; font-size: 14px; padding-right: 18px; padding-top: 46px; }
+    .code { white-space: pre-wrap; word-break: normal; overflow-wrap: anywhere; font-size: 14px; padding-right: 18px; padding-top: 46px; }
+    .code.big { font-size: 16px; padding: 46px 18px 18px; }
+    .grid.two > div, .grid.two > div + div { padding-left: 0; padding-right: 0; }
   }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 </style>
@@ -129,7 +156,8 @@
     </a>
     <nav>
       <a href="#how">How it works</a>
-      <a href="#install">Install</a>
+      <a href="#example">Example</a>
+      <a href="#install-steps">Install</a>
       <a href="https://github.com/fontai/crux">GitHub</a>
     </nav>
   </div>
@@ -140,15 +168,59 @@
     <div class="wrap">
       <h1>Get to the crux of long&nbsp;documents.</h1>
       <p>You got a 40-page analysis and have to decide. <strong>CRUX reads it for you</strong> and answers on one screen: a verdict, what matters, what is missing, what to ask the author. It also checks whether the analysis can be trusted.</p>
-      <div class="btns">
-        <a class="btn primary" href="#install">Install for free</a>
-        <a class="btn" href="#example">See an example</a>
+      <div class="install" id="install">
+        <div class="tabs" role="tablist">
+          <button class="tab" role="tab" aria-selected="true" aria-controls="p-code" id="t-code">Claude Code</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="p-app" id="t-app">Claude app</button>
+        </div>
+        <div class="panel" id="p-code" role="tabpanel" aria-labelledby="t-code">
+          <div class="code big"><span>claude plugin install crux --marketplace fontai/crux</span><button class="copy" type="button">Copy</button></div>
+          <p class="alts">Paste it into a terminal, then start a new Claude Code session and say <code>crux report.pdf</code>.<br>
+          One click instead: <a href="claude://code/new?q=Read%20https%3A%2F%2Fgithub.com%2Ffontai%2Fcrux%2Fblob%2Fmain%2FREADME.md%20and%20install%20the%20crux%20skill.">Claude Desktop</a> · <a href="vscode://anthropic.claude-code/install-plugin?plugin=crux&amp;marketplace=fontai/crux">VS Code</a> · or <a href="#" class="copy-prompt" data-text="Read https://github.com/fontai/crux/blob/main/README.md and install the crux skill.">copy a prompt</a> that tells Claude to install it.<br><a href="#install-steps">Step-by-step instructions and help ↓</a></p>
+        </div>
+        <div class="panel" id="p-app" role="tabpanel" aria-labelledby="t-app" hidden>
+          <a class="btn primary" href="https://github.com/fontai/crux/releases/latest/download/crux.zip">Download crux.zip</a>
+          <p class="alts">Then in Claude open <a href="https://claude.ai/settings/capabilities">Settings → Capabilities</a> → <strong>Skills</strong> → <strong>Upload skill</strong>. Code execution must be on; turn on web search for fact-checking. Works on web, desktop and phone, on the same account.<br><a href="#install-steps">Step-by-step instructions and help ↓</a></p>
+        </div>
       </div>
       <div class="video">
         <video autoplay muted loop playsinline preload="metadata" poster="assets/demo-poster.jpg" aria-label="Demo: installing CRUX and analysing a long document in Claude Code">
           <source src="assets/demo.mp4" type="video/mp4">
         </video>
       </div>
+    </div>
+  </section>
+
+  <section id="install-steps">
+    <div class="wrap">
+      <div class="label">Install, step by step</div>
+      <h2>Didn't work? Do it like this.</h2>
+      <div class="grid two">
+        <div>
+          <h3>Claude Code</h3>
+          <ol class="steps">
+            <li>Open a terminal and run:<div class="code"><span>claude plugin install crux --marketplace fontai/crux</span><button class="copy" type="button">Copy</button></div></li>
+            <li>Error <em>unknown option '--marketplace'</em>? Your Claude Code is older. Run these two lines instead, or update Claude Code:<div class="code"><span>claude plugin marketplace add fontai/crux
+claude plugin install crux@fontai</span><button class="copy" type="button">Copy</button></div></li>
+            <li>Start a <strong>new</strong> Claude Code session. Already running sessions won't see CRUX.</li>
+            <li>Try it: <code>crux path/to/document.pdf</code>. The first run may ask whether CRUX may run. Choose <em>Yes, and don't ask again</em>.</li>
+            <li>Check that it's installed: <code>claude plugin list</code> must show <code>crux@fontai</code>.</li>
+          </ol>
+        </div>
+        <div>
+          <h3>Claude app <span class="sub">web · desktop · phone</span></h3>
+          <ol class="steps">
+            <li><a class="btn primary" href="https://github.com/fontai/crux/releases/latest/download/crux.zip">Download crux.zip</a><br>Don't unzip it.</li>
+            <li>Open <a href="https://claude.ai/settings/capabilities">claude.ai → Settings → Capabilities</a>. On a computer is easiest.</li>
+            <li>Turn on <strong>Code execution and file creation</strong>. CRUX needs it.</li>
+            <li>Turn on <strong>web search</strong> if you want claims and sources fact-checked.</li>
+            <li>Under <strong>Skills</strong>, click <strong>Upload skill</strong> and choose <code>crux.zip</code>. Make sure it's switched on.</li>
+            <li>Open a new chat, attach a document and write <code>crux</code>. It also works on your phone, on the same account.</li>
+          </ol>
+          <p class="note">Your company uses Claude Team or Enterprise? An owner can upload it once and share it with the whole organization.</p>
+        </div>
+      </div>
+      <p class="note">Still stuck? <a href="https://github.com/fontai/crux/issues">Tell us</a>, or ask Claude: <em>“Read https://github.com/fontai/crux/blob/main/README.md and install the crux skill.”</em></p>
     </div>
   </section>
 
@@ -229,53 +301,6 @@ Usefulness 1 · Depth 1 · <span class="dim">Alignment 2 (indicative)</span>
     </div>
   </section>
 
-  <section id="install">
-    <div class="wrap">
-      <div class="label">Install</div>
-      <h2>Free. Two minutes.</h2>
-      <p class="lead">CRUX is a skill for Claude. It works in Claude Code and in the Claude app on the web, desktop and phone.</p>
-
-      <div class="tabs" role="tablist">
-        <button class="tab" role="tab" aria-selected="true" aria-controls="p-code" id="t-code">Claude Code</button>
-        <button class="tab" role="tab" aria-selected="false" aria-controls="p-app" id="t-app">Claude app</button>
-      </div>
-
-      <div class="panel" id="p-code" role="tabpanel" aria-labelledby="t-code">
-        <div class="step"><div class="n">1</div><div>
-          <p><strong>One click</strong>, if you use Claude Desktop or VS Code:</p>
-          <div class="btns">
-            <a class="btn primary" href="claude://code/new?q=Read%20https%3A%2F%2Fgithub.com%2Ffontai%2Fcrux%2Fblob%2Fmain%2FREADME.md%20and%20install%20the%20crux%20skill.">Install with Claude Desktop</a>
-            <a class="btn" href="vscode://anthropic.claude-code/install-plugin?plugin=crux&amp;marketplace=fontai/crux">Install in VS Code</a>
-          </div>
-          <p style="margin-top:10px;font-size:15px">Claude Desktop opens with the install request filled in. Just press Enter.</p>
-        </div></div>
-        <p class="or">or in a terminal, one line:</p>
-        <div class="step"><div class="n"></div><div>
-          <div class="code"><span>claude plugin install crux --marketplace fontai/crux</span><button class="copy" type="button">Copy</button></div>
-        </div></div>
-        <p class="or">or paste this into any Claude Code session and let Claude do it:</p>
-        <div class="step"><div class="n"></div><div>
-          <div class="code"><span>Read https://github.com/fontai/crux/blob/main/README.md and install the crux skill.</span><button class="copy" type="button">Copy</button></div>
-        </div></div>
-        <div class="step"><div class="n">2</div><div>
-          <p><strong>Start a new Claude Code session</strong> and try it: <code style="font-family:var(--mono);color:#fff">crux path/to/document.pdf</code></p>
-        </div></div>
-      </div>
-
-      <div class="panel" id="p-app" role="tabpanel" aria-labelledby="t-app" hidden>
-        <div class="step"><div class="n">1</div><div>
-          <p><strong>Download the skill.</strong></p>
-          <a class="btn primary" href="https://github.com/fontai/crux/releases/latest/download/crux.zip">Download crux.zip</a>
-        </div></div>
-        <div class="step"><div class="n">2</div><div>
-          <p><strong>Upload it to Claude.</strong> Open <a href="https://claude.ai/settings/capabilities">Settings → Capabilities</a>. Make sure <strong>Code execution</strong> is on, and turn on web search for fact-checking. Under <strong>Skills</strong>, click <strong>Upload skill</strong> and choose <code style="font-family:var(--mono);color:#fff">crux.zip</code>.</p>
-        </div></div>
-        <div class="step"><div class="n">3</div><div>
-          <p><strong>Use it anywhere</strong>: web, desktop or phone, on the same account. Attach a document and write “crux”.</p>
-        </div></div>
-      </div>
-    </div>
-  </section>
 
   <section>
     <div class="wrap">
@@ -309,6 +334,14 @@ Usefulness 1 · Depth 1 · <span class="dim">Alignment 2 (indicative)</span>
       var text = b.previousElementSibling.textContent;
       var done = function () { b.textContent = 'Copied'; b.classList.add('done'); setTimeout(function () { b.textContent = 'Copy'; b.classList.remove('done'); }, 1800); };
       if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, function () {});
+    });
+  });
+  document.querySelectorAll('.copy-prompt').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (navigator.clipboard) navigator.clipboard.writeText(a.dataset.text).then(function () {
+        var t = a.textContent; a.textContent = 'copied ✓'; setTimeout(function () { a.textContent = t; }, 1800);
+      });
     });
   });
   var tabs = document.querySelectorAll('.tab');
