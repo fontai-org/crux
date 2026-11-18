@@ -172,6 +172,18 @@
   .steps-intro strong { font-weight: 500; }
 
   /* example output */
+  .answer { background: #0d0d0d; border: 1px solid var(--rule); margin-top: 36px; padding: 28px 32px; font-size: 16px; line-height: 1.6; color: #d9d9d9; max-width: 900px; }
+  .answer h4 { font-size: 22px; font-weight: 500; color: var(--white); line-height: 1.3; }
+  .answer h5 { font-size: 17px; font-weight: 500; color: var(--white); margin: 18px 0 4px; }
+  .answer blockquote { border-left: 3px solid var(--rule); padding-left: 12px; color: var(--muted); margin: 10px 0 14px; font-size: 15px; }
+  .answer p { margin: 8px 0; }
+  .answer b { color: var(--white); font-weight: 500; }
+  .answer ul, .answer ol { padding-left: 22px; }
+  .answer li { margin: 3px 0; }
+  .answer code { font: 400 13px var(--mono); background: #1d1d1d; color: #9fe8ff; padding: 1px 5px; white-space: nowrap; }
+  .answer .more { color: var(--muted); font-style: italic; margin-top: 14px; }
+  @media (max-width: 560px) { .answer { padding: 18px 16px; font-size: 15px; } }
+
   .term { background: #0d0d0d; border: 1px solid var(--rule); margin-top: 36px; font: 400 15px/1.65 var(--mono); padding: 26px 28px; overflow-x: auto; white-space: pre-wrap; color: #d9d9d9; }
   .term b { color: var(--white); font-weight: 400; }
   .term .v { color: var(--accent); }
@@ -335,7 +347,7 @@ claude plugin install crux@fontai</span><button class="copy" type="button">Copy<
         <div><div class="n">1</div><h3>Give it the document</h3><p><code style="font-family:var(--mono);color:#fff">crux report.pdf</code>, or attach the file and write “crux”.</p></div>
         <div><div class="n">2</div><h3>Answer four questions</h3><p>What to do, how deep, the author's brief (if you have it), and what <em>you</em> need to decide.</p></div>
         <div><div class="n">3</div><h3>It reads and checks</h3><p>In Claude Code, separate helpers do the research and return only short findings, so your session stays light.</p></div>
-        <div><div class="n">4</div><h3>You decide</h3><p>The answer stays in the chat. Ask if you want it saved or exported to PDF.</p></div>
+        <div><div class="n">4</div><h3>You decide</h3><p>A short answer first, about 20 lines. Say “full” for every detail, or ask to save or export it.</p></div>
       </div>
     </div>
   </section>
@@ -357,40 +369,35 @@ claude plugin install crux@fontai</span><button class="copy" type="button">Copy<
     <div class="wrap">
       <div class="label">Example answer</div>
       <h2>What it looks like.</h2>
-      <p class="lead">A fictional 40-page analysis, the one from the video: should a 120-person company move to a four-day week? CRUX's real answer, shortened.</p>
-<div class="term"><b class="v">VERDICT: Return.</b> The productivity study the whole business case
-rests on could not be found anywhere, and the document contradicts its
-own numbers. A pilot can still make sense, but approve it on its own terms.
-<span class="dim">Brief: not supplied, guessed (high confidence, §1.1)
-Your decision: whether to approve a 3-month pilot</span>
-
-<b>SUMMARY</b>
-Main message: 100 % pay for 80 % of the time, staggered days off; a 6-month
-pilot with 56 people, then company-wide (§15.2).
-• Financial model: net EUR 412k a year, 7-month payback (§8.5)
-• It depends on a +27 % productivity gain "from 340 logistics firms" (§5.4)
-
-<b>RECOMMENDATION — for your decision</b>
-• Approve only the pilot, not the rollout or hiring 6 people (§15.2).
-• Set pass/fail criteria without the 27 %: output ≥ 95 % of baseline (§10.4).
-
-<b>RISKS AND GAPS</b>
-<span class="w">⚠</span> The study behind the 27 % looks made up: its site doesn't exist (§5.4)
-<span class="w">⚠</span> Net benefit is EUR 1.2M in some places, EUR 412k in others (§8.5)
-<span class="w">⚠</span> The warehouse has 46 people in one place and 64 in another (§4.2, §7.9)
-<span class="w">⚠</span> The pilot's own targets don't fit: +15 % per hour × 80 % of hours = 92 %,
-  below the 95 % pass mark (§14.2 vs §10.4)
-<span class="w">⚠</span> The Risks section lists no risks (§13)
-
-<b>QUESTIONS FOR THE AUTHOR</b>
-1. Can you share the study? If not, what is the case without the 27 %?
-2. Which is right: EUR 412k or 1.2M, 46 or 64 staff?
-3. What does the pilot alone cost, and how do we roll it back?
-
-<b>SCORING</b> <span class="dim">(Standard · brief guessed)</span>
-Overall 2.2/5 → Return
-Accuracy 2 · Support 2 · Specificity 3 · Consistency 1
-Usefulness 3 · Depth 2 · <span class="dim">Alignment 4 (approximate)</span></div>
+      <p class="lead">A fictional 40-page analysis, the one from the video: should a 120-person company move to a four-day week? CRUX's real answer at Quick depth. Short by default; ask for the full version if you need it.</p>
+<div class="answer">
+<h4>🟡 Revise (no fact check) — the pilot is cheap, but the case behind it is shaky</h4>
+<blockquote>Brief: inferred (“should we move to a 4-day week, and how?”) · Your decision: approve a 3-month pilot</blockquote>
+<p><b>Main message:</b> Move all 120 staff to 100% pay for 80% of the hours, with days off staggered across teams. Test it with a pilot first. <code>§15.2</code></p>
+<ul>
+<li>Of the five models compared, they pick Option C, staggered teams, to keep Friday and Saturday customer coverage. <code>§7.8–7.9</code></li>
+<li>They propose a 6-month pilot (Feb–Jul 2027, 56 people), not 3 months. Drivers and sales are left out as a comparison group. <code>§10.3</code></li>
+<li>Cost: EUR 240k one-off, plus EUR 286k a year including 6 new hires. <code>§8.2–8.3</code></li>
+</ul>
+<h5>Recommendation</h5>
+<ul>
+<li>Approve only the pilot and its budget. Do not approve point 1 (the 4-day week for all employees) or the hires. <code>§15.2</code></li>
+<li>First ask for success criteria that match the business case. Three months can't show effects on turnover or peak season. <code>§10.4</code></li>
+</ul>
+<h5>Risks</h5>
+<ul>
+<li>🔴 The whole case rests on a single source: the “Henley Institute” study of a 27% productivity gain. Other claims have no source at all. <code>§5.4</code> <code>§6.2–6.3</code></li>
+<li>🔴 The headline net saving of “EUR 1.2 million” a year doesn't match the document's own financial model, which gives EUR 412,000. <code>s. 3</code> <code>§15.1</code> vs <code>§8.5</code></li>
+<li>🔴 The pilot's pass bar is +15% productivity and ≥ 95% output. The business case needs +25% just to keep output flat. <code>§10.4</code> <code>§14.2</code></li>
+</ul>
+<h5>Questions for the author</h5>
+<ol>
+<li>Which figures are right: EUR 412k or 1.2M, and 46 or 64 warehouse staff? <code>§4.2</code> vs <code>§7.9</code></li>
+<li>What happens if productivity rises 10% instead of 27%? The sensitivity analysis never changes that number. <code>§8.7</code></li>
+</ol>
+<p><b>Score 2.6/5</b> · 🔴 Evidence 2 · 🟡 Specificity 3 · 🔴 Consistency 2 · 🟡 Decision use 3 · 🟡 Depth 3 · ⚪ Alignment 4 (indicative) · ⚪ Accuracy not checked</p>
+<p class="more">Full version: 6 more risks (an empty Risks section, the pilot skipping drivers and peak season, how overtime falls by 50%), the reasoning behind each score, and an estimate of the author's effort. Write “full”.</p>
+</div>
     </div>
   </section>
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.4 — 2026-11-18
+
+- Short answer by default (~20 lines: verdict, 3 key points, 2 recommendations, 3 risks,
+  2 questions, one-line score). The last line says what the full version adds; say "full".
+- Formatting that works in the terminal and the Claude app: traffic-light verdict heading
+  (🟢 🟡 🔴 ⚪), section headings, locations as inline code, red/yellow risks, score dots.
+
 ## 0.1.3 — 2026-11-18
 
 - No longer pre-approves running its scripts, so the Claude app no longer flags the plugin

@@ -95,7 +95,9 @@ CRUX then asks four quick questions (or confirms what you already said):
 
 You can say it all up front: `crux report.pdf, summary only, quick, I need to decide whether to approve it`.
 
-The answer stays in the chat. Ask if you want it saved or exported (Markdown, PDF, …).
+The answer is **short by default** (about 20 lines). Say **"full"** for every risk, the
+reasoning behind each score and the sources. It stays in the chat; ask if you want it
+saved or exported (Markdown, PDF, …).
 
 ## What CRUX promises
 

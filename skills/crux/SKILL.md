@@ -7,7 +7,7 @@ allowed-tools: Read Grep Glob WebSearch WebFetch
 
 # crux
 
-Goal: a decision maker gets the core of a long document on **one screen** and an
+Goal: a decision maker gets the core of a long document in **~20 lines** and an
 honest, evidence-based judgement of its quality — without reading it.
 
 `${CLAUDE_SKILL_DIR}` below is this skill's folder (where this file is). If it was not
@@ -99,7 +99,8 @@ claims** — the 5–15 claims the conclusions depend on, each with its location
 
 ## Step 4 — Answer
 
-Follow `references/output.md`: verdict first, every point with its location, one screen,
-formatted for where the user is (terminal vs. app). Run its self-check. Finish with one
-line offering to save the output to a file and the most useful next step. Do **not**
+Follow `references/output.md`. **Short by default** (≤ ~20 lines): verdict first, every
+point with its location, formatted for where the user is (terminal vs. app). End with one
+line offering the full version and saying what it adds. Give the full version right away
+only if the user asked for it ("celé", "podrobně", "full"). Run the self-check. Do **not**
 save anything unless the user says so.
