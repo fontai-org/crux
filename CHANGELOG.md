@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.5 — 2026-11-18
+
+- Recommends the full version when it holds something that could change the decision
+  (another serious risk, a made-up source, a disagreement with the research); in Claude
+  Desktop and Claude Code it asks with a picker. Otherwise a neutral one-line offer.
+- The update notice now says how to update in the Claude app as well as in Claude Code.
+
 ## 0.1.4 — 2026-11-18
 
 - Short answer by default (~20 lines: verdict, 3 key points, 2 recommendations, 3 risks,

@@ -30,11 +30,11 @@ newer="$(awk -v a="$REMOTE" -v b="$LOCAL" 'BEGIN {
 [ "$newer" = "1" ] || exit 0
 
 case "$SKILL_DIR" in
-  */.claude/plugins/*) HOW="run: claude plugin update crux@fontai (then restart Claude Code)" ;;
+  */plugins/*) HOW="Claude app: Settings → Customize → Plugins → Crux → Update · Claude Code: claude plugin marketplace update fontai && claude plugin update crux@fontai" ;;
   *) if git -C "$SKILL_DIR" rev-parse --git-dir >/dev/null 2>&1; then
        HOW="run: git -C \"$(git -C "$SKILL_DIR" rev-parse --show-toplevel)\" pull"
      else
-       HOW="download crux.zip from https://github.com/fontai/crux/releases/latest and upload it again"
+       HOW="download the new crux.zip from https://crux.fontai.org/#update and upload it again"
      fi ;;
 esac
 echo "crux $REMOTE is available (you have $LOCAL) — $HOW"

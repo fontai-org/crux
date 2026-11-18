@@ -47,6 +47,13 @@ emoji.
 - Include a made-up source or a refuted key claim under Rizika whenever there is one.
 - The last line says **what the full version adds** (with counts), so the user knows
   whether it is worth asking. Leave it out if the full version would add nothing.
+- **Recommend the full version** when it holds anything that could change the decision
+  and did not fit: another 🔴 risk, a refuted or made-up source, a divergence from the
+  research, a gap in the money or the plan. Then the last line starts
+  `⚠️ Doporučuji plnou verzi:` and names those items briefly. If the `AskUserQuestion`
+  tool is available, ask right after the answer with the options
+  **Plná verze (Doporučeno)** / **Stačí takhle** (translated to the user's language).
+  Otherwise keep the neutral offer.
 - If the brief is missing, the warning is the `>` line; do not repeat it as a paragraph.
 - **The offer of the full version is the very last line. Write nothing after it** — no
   notes, no extra findings, no suggestions. Anything that matters belongs in a block
