@@ -29,12 +29,15 @@ Read https://github.com/fontai/crux/blob/main/README.md and install the crux ski
 ### Claude Code: by hand
 
 ```bash
-claude plugin marketplace add fontai/crux
-claude plugin install crux@fontai
+claude plugin install crux --marketplace fontai/crux
 ```
 
-Start a new Claude Code session afterwards. Inside a session you can use
-`/plugin marketplace add fontai/crux` and `/plugin install crux@fontai` instead.
+Older Claude Code versions use two commands instead:
+`claude plugin marketplace add fontai/crux` and then `claude plugin install crux@fontai`.
+Start a new Claude Code session afterwards.
+
+In **VS Code** you can open
+`vscode://anthropic.claude-code/install-plugin?plugin=crux&marketplace=fontai/crux`.
 
 ### Claude app (web, desktop, mobile)
 
@@ -115,11 +118,11 @@ Follow these steps exactly and report the result to the user.
      download link, and stop.
 2. **Install:**
    ```bash
-   claude plugin marketplace add fontai/crux
-   claude plugin install crux@fontai
+   claude plugin install crux --marketplace fontai/crux
    ```
-   If the marketplace already exists, run `claude plugin marketplace update fontai`
-   instead of `add`.
+   If that flag is unknown (older Claude Code), run
+   `claude plugin marketplace add fontai/crux` and then `claude plugin install crux@fontai`.
+   If CRUX is already installed, run `claude plugin update crux@fontai` instead.
 3. **Verify:** `claude plugin list` must show `crux@fontai` as enabled.
 4. **If the plugin commands fail** (old Claude Code, plugins disabled by policy), install
    it as a personal skill:

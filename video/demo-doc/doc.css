@@ -1,0 +1,16 @@
+/* Generic "corporate report" look for the fictional demo document (not Fontai design). */
+@page { size: A4; margin: 22mm 20mm 22mm 20mm;
+  @bottom-center { content: "Northwind Logistics · Four-Day Week Analysis · page " counter(page) " of " counter(pages); font: 8pt Helvetica, Arial, sans-serif; color: #888; } }
+body { font: 10.5pt/1.5 Georgia, "Times New Roman", serif; color: #222; }
+h1 { font: bold 22pt Helvetica, Arial, sans-serif; color: #1d3a6b; margin: 0 0 8mm; }
+h2 { font: bold 15pt Helvetica, Arial, sans-serif; color: #1d3a6b; border-bottom: 1.5pt solid #1d3a6b; padding-bottom: 2mm; margin-top: 10mm; }
+h3 { font: bold 12pt Helvetica, Arial, sans-serif; color: #2b5797; margin-top: 6mm; }
+h4 { font: bold 10.5pt Helvetica, Arial, sans-serif; }
+table { border-collapse: collapse; width: 100%; margin: 4mm 0; font: 9pt Helvetica, Arial, sans-serif; }
+th { background: #1d3a6b; color: #fff; text-align: left; padding: 1.5mm 2mm; }
+td { border-bottom: 0.5pt solid #ccc; padding: 1.5mm 2mm; }
+tr:nth-child(even) td { background: #f2f5fa; }
+blockquote { border-left: 3pt solid #2b5797; margin-left: 0; padding-left: 4mm; color: #444; font-style: italic; }
+code { font-size: 9pt; }
+a { color: #2b5797; }
+h2 { page-break-before: auto; }
